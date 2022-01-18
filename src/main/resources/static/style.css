@@ -47,6 +47,7 @@
     border-color: black;
     box-shadow: -1px 1px 10px 5px rgba(0,0,0,0.3);
     border-radius: 5px;
+    height:max-content;
   }
 
   lining{
@@ -64,7 +65,7 @@
     opacity: 0.83;
   }
   p{
-    color: whitesmoke;
+    color: black;
   }
 
   img{
@@ -116,3 +117,6 @@
     background-color: grey;
   }
   
+  .bookdetails{
+    padding-right: 4em;
+  }

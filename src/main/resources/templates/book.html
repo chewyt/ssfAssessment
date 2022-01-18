@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book details</title>
+    <link rel="stylesheet" href="/bootstrap.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body class="">
+
+    <div class="text-center">
+        <a href="index.html"><img class="" src="/icon.png" height="50px" alt="logo"></a>
+        <!-- <span><img th:src="@{'https://flagcdn.com/256x192/'+${countryCode}+'.png'}" th:alt="${country}"
+                width="50em"></span> -->
+    </div>
+    <!-- <h3 th:text="${data}"></h3> -->
+
+    <div class=" row  mt-5">
+        <div class="col lining text-center">
+            <div>
+                <img class="icon" th:src="@{'https://covers.openlibrary.org/b/id/'+${img}+'-L.jpg'}"
+                    alt="cover image" >
+            </div>
+        </div>
+
+        <div class="col text-start align-content-center bookdetails">
+            <div class="mb-1">
+                <span><strong>Title: </strong></span>
+                <span th:text=${book.title}>hi</span>
+            </div>
+            
+            <div class="mb-1">
+                <span><strong>Description: </strong></span>
+                <span th:text=${book.description}>hi</span>
+            </div>
+            <div class="mb-1">
+                <span><strong>Excerpt: </strong></span>
+                <span th:text= "${no_excerpt}"></span>
+
+                <div th:each="excerpt: ${excerpts}">
+                    <div>
+                        <p th:text="${excerpt}"></p>
+                    </div>
+    
+                </div>
+                <!-- <span th:text=${book.excerpt}>empty</span> -->
+            </div>
+            <div class="mb-1">
+                <span><strong>Cached: </strong></span>
+                <span th:text=${book.cache}>hi</span>
+            </div>
+            
+            <!-- <img th:src="@{'numbers/number'+${num}+'.jpg'}" th:alt="@{'number '+${num}}" width="100em"> -->
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col d-flex justify-content-end ">
+            <a href="/" class="btn btn-primary btn-lg">Back</a>
+        </div>
+    </div>
+</body>
+
+</html>

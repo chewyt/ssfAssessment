@@ -18,6 +18,7 @@ import static chewyt.Template.Constants.*;
 
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
+// import jakarta.json.JsonNumber;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 
@@ -45,7 +46,7 @@ public class BookService {
         logger.log(Level.INFO, resp.getHeaders().toString());
         // logger.log(Level.INFO, resp.getBody().toString());
 
-        try (InputStream is = new ByteArrayInputStream(resp.getBody().getBytes())) {
+        try (InputStream is = new ByteArrayInputStream(resp.getBody().getBytes("UTF-8"))) {
             JsonReader reader = Json.createReader(is);
             JsonObject result = reader.readObject();
             final JsonArray results = result.getJsonArray("docs");
@@ -61,4 +62,73 @@ public class BookService {
         return null;
     }
 
+    public BookDetails load(String id) {
+        
+        logger.info(">>>>>>>>>Linking external WORK API");
+
+        logger.info(URL_API_WORKS+id+".json");
+
+        String url = UriComponentsBuilder
+                .fromUriString(URL_API_WORKS+id+".json")
+                .toUriString();
+
+        final RequestEntity<Void> req = RequestEntity.get(url).build();
+        final RestTemplate template = new RestTemplate();
+        final ResponseEntity<String> resp = template.exchange(req, String.class);
+
+        logger.log(Level.INFO, resp.getStatusCode().toString());
+        logger.log(Level.INFO, resp.getHeaders().toString());
+        logger.log(Level.INFO, resp.getBody().toString());
+
+        try (InputStream is = new ByteArrayInputStream(resp.getBody().getBytes("UTF-8"))) {
+            JsonReader reader = Json.createReader(is);
+            JsonObject result = reader.readObject();
+            String description;
+            try {
+                description = result.getString("description");
+            } catch (Exception e) {
+                description = result.getJsonObject("description").getString("value");
+            }
+            
+            String key = result.getString("key");
+            String title = result.getString("title");
+            // logger.info("Index : %d".formatted(result.getJsonArray("covers").at));
+            
+            JsonArray covers = result.getJsonArray("covers");
+            int coverNum=0;
+            if (covers!=null) {
+                
+                List<Integer> coverList = covers.stream()
+                    .map(v->(Integer.parseInt(v.toString())))
+                    .collect(Collectors.toList());
+                
+                try {
+                    if (coverList.contains(-1)) {
+                        coverNum=coverList.get(coverList.indexOf(-1)+1);
+                    } else {
+                        coverNum=coverList.get(0);
+                    }             
+                } catch (Exception e) {
+                    coverNum=coverList.get(0);
+                }
+            }
+            
+            JsonArray Jarray = result.getJsonArray("excerpts");
+            if (Jarray!=null) {
+                List<String> excerpts = Jarray.stream()
+                        .map(v -> (JsonObject) v)
+                        .map(BookDetails::convertExcerpt)
+                        .collect(Collectors.toList());
+                        return new BookDetails(key, title, description, excerpts, coverNum);
+                    }
+                    
+            return new BookDetails(key, title, description, coverNum);
+            
+
+        } catch (Exception e) {
+            logger.severe("GG: %s".formatted(e.getMessage()));
+        }
+        return new BookDetails();
+
+    }
 }
