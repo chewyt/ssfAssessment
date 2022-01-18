@@ -12,7 +12,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 // import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-// import static chewyt.Template.Constants.*;
+import static chewyt.Template.Constants.*;
 
 @Configuration
 public class Config {
@@ -23,8 +23,8 @@ public class Config {
     private Optional<Integer> redisPort;
 
     // >>>>>>>> Uncomment/Comment
-    @Value("${spring.redis.password}")
-    private Optional<String> redisPassword;
+    // @Value("${spring.redis.password}")
+    // private Optional<String> redisPassword;
     // >>>>>>>> Uncomment/Comment
 
     Logger logger = Logger.getLogger(Config.class.getName());
@@ -36,8 +36,8 @@ public class Config {
         config.setPort(redisPort.get());
 
         // >>>>>>>> Uncomment/Comment either one
-        // config.setPassword(ENV_REDISCLOUD);
-        config.setPassword(redisPassword.get());
+        config.setPassword(ENV_REDISCLOUD);
+        // config.setPassword(redisPassword.get());
         // >>>>>>>> Uncomment/Comment either one
 
         return new JedisConnectionFactory(config);

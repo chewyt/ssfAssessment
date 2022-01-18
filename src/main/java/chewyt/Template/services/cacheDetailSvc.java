@@ -52,7 +52,7 @@ public class cacheDetailSvc {
     // }
     
     private JsonObject parseJsonObject(String searchKey){
-        try (InputStream is = new ByteArrayInputStream(searchKey.getBytes())) {
+        try (InputStream is = new ByteArrayInputStream(searchKey.getBytes("UTF-8"))) {
             JsonReader reader = Json.createReader(is);
             return reader.readObject();            
         } catch (Exception e) {
