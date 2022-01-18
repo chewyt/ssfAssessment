@@ -9,15 +9,14 @@ public class Constants {
 
 
     //Storing in Config VARS of Heroku
-    // public static final String ENV_REDISCLOUD = System.getenv("ENV_REDISCLOUD");
-    // public static final String ENV_APIKEY_PUBLIC = System.getenv("APIKEY_PUBLIC"); 
-    // public static final String ENV_APIKEY_PRIVATE = System.getenv("APIKEY_PRIVATE");
+    public static final String ENV_REDISCLOUD = System.getenv("ENV_REDISCLOUD");
+   
     
     
     
     
     //Storing in ENV path locally: RESTART PC after local ENV changes
-    public static final String ENV_REDISCLOUD = System.getenv("REDIS_PW");
+    // public static final String ENV_REDISCLOUD = System.getenv("REDIS_PW");
     
 
 
