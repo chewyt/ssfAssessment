@@ -1,8 +1,10 @@
 package chewyt.Template.controllers;
 
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -66,7 +68,7 @@ public class SearchController {
             } catch (Exception e) {
                 logger.warning("Warning: %s".formatted(e.getMessage()));
                 model.addAttribute("error", "Search term found no results. Please try again.");
-                return "index";
+                return "results";
             }
         }
 
@@ -75,8 +77,17 @@ public class SearchController {
         // String countryCodeforDisplay = weather.get(0).getCountryCode();
 
         logger.log(Level.INFO, "Data: %s".formatted(searches));
-        // model.addAttribute("city", cityNameforDisplay);
-        // model.addAttribute("country", countryNameforDisplay);
+        model.addAttribute("query", "Search result for '%s'".formatted(title));
+        
+        
+        if (searches.size()<1) {  
+            model.addAttribute("error", "Search term found no results. Please try again.");
+        }        
+        if (searches.size()==20) {  
+            model.addAttribute("more", "<More results, not shown>");
+        }        
+        model.addAttribute("searches", searches);
+        // searches= searches.subList(0, 20); //Standard index search
         // model.addAttribute("countryCode", countryCodeforDisplay);
         // model.addAttribute("data", weather);
         return "results";

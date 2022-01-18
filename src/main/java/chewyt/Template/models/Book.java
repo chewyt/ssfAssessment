@@ -10,20 +10,24 @@ import jakarta.json.JsonReader;
 
 public class Book implements Serializable {
    
-    private String name;
-    private String imgUrl;
+    private String key;
+    private String title;
 
-    public String getName() {
-        return name;
+    
+    public String getKey() {
+        return key;
     }
-    public void setName(String name) {
-        this.name = name;
+
+    public void setKey(String key) {
+        this.key = key;
     }
-    public String getImgUrl() {
-        return imgUrl;
+
+    public String getTitle() {
+        return title;
     }
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     @Override
@@ -33,22 +37,22 @@ public class Book implements Serializable {
 
     public JsonObject toJson() {
         return Json.createObjectBuilder()
-                .add("name", name)
-                .add("imgUrl", imgUrl)
+                .add("key", key)
+                .add("title", title)
                 .build();
     }
 
     public static Book create(JsonObject o) {
         Book om = new Book();
-        om.setName(o.getString("name"));
-        om.setImgUrl(o.getJsonObject("thumbnail").getString("path"));
+        om.setKey(o.getString("key"));
+        om.setTitle(o.getString("title"));
         return om;
     }
     
     public static Book createfromRedis(JsonObject o) {
         Book om = new Book();
-        om.setName(o.getString("name"));
-        om.setImgUrl(o.getString("imgUrl"));
+        om.setKey(o.getString("key"));
+        om.setTitle(o.getString("title"));
         return om;
     }
 

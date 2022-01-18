@@ -18,18 +18,30 @@
     padding-bottom: 40px;
     /* background-size: auto; */
     /* background-attachment: fixed; */
-    background-color: white
+    background-color: white;
+  }
 
   body.results{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content:center;
-    background: url(https://terrigen-cdn-dev.marvel.com/content/prod/1x/a44.jpg) no-repeat center ;
-    background-size:contain;
-    background-attachment: fixed;
-    background-color: rgba(0,0,0);
+    /* align-items: center; */
+    justify-content:start;
+    /* background: url(https://terrigen-cdn-dev.marvel.com/content/prod/1x/a44.jpg) no-repeat center ; */
+    /* background-size:contain; */
+    /* background-attachment: fixed; */
+    background-color: white;
   }
+  body.error{
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content:center;
+    /* background: url(https://terrigen-cdn-dev.marvel.com/content/prod/1x/a44.jpg) no-repeat center ; */
+    /* background-size:contain; */
+    /* background-attachment: fixed; */
+    background-color: grey;
+  }
+  
   .icon{
     border: 2px;
     border-color: black;
@@ -42,7 +54,7 @@
   }
 
   .error{
-    color: yellow;
+    color:  rgb(20, 20, 20);
     font-weight: bold;
     
   }
@@ -60,9 +72,10 @@
   }
 
   .wrapper{
+    
     display: grid;
-    grid-template-columns: repeat(8,1fr);
-    grid-gap: 1em;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 2em;
     grid-auto-rows: minmax(120px, auto);
   }
 
@@ -97,5 +110,9 @@
     border-bottom: 10px red solid;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
+  }
+
+  .contain{
+    background-color: grey;
   }
   

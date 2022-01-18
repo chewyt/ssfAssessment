@@ -3,7 +3,8 @@ package chewyt.Template;
 public class Constants {
     
     //API URLS
-    public static final String URL_API = "https://api.openweathermap.org/data/2.5/weather";
+    public static final String URL_API_SEARCH = "http://openlibrary.org/search.json";
+    public static final String URL_API_WORKS = "http://openlibrary.org/search.json";
     public static final String URL_WEATHER = "https://api.openweathermap.org/data/2.5/weather";
     public static final String URL_COUNTRY = "https://flagcdn.com/en/codes.json";
     public static final String REDIS_KEY = "ASSESMENT_API_";

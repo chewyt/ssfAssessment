@@ -14,25 +14,34 @@
             font-family: 'Roboto Condensed';
             font-size: 50px;
             font-weight: bolder;
-            color: white;
+            color: black;
         }
         </style>
 </head>
 
-<body class="results text-center">
+<body class="results">
     <div class="row text-center">
-        <h1 class="row mb-5 mt-5 text-center">Hero search</h1>
+        <h1 th:text=${query} class="mb-5 mt-5 text-center"> </h1>
+        <p class="error mt-4" th:text= ${error}> </p>
+                
         <div class="images wrapper">
-            <div th:each="hero: ${heroes}">
+            <div class="contain" th:each="search: ${searches}"> 
                 <div class="text-center">
-                    <!-- <span><strong>Name: </strong></span> -->
-                    <img th:src="@{${hero.imgUrl}+'/portrait_incredible.jpg'}" alt="${hero.name}" height="100px">
-                    <p th:text=${hero.name}>hi</p>
+                    <!-- <img th:src="@{${search.imgUrl}}" alt="${hero.name}" height="100px"> -->
+                    <a th:href="@{${search.key}}">
+                        <p th:text=${search.title}>hi</p>
+                    </a>
+                    
+                    <!-- <a th:href=${search.id}>
+                        <p th:text=${search.title}>hi</p>
+                    </a> -->
                 </div>
 
             </div>
         </div>
     </div>
+    <p class="error mt-4" th:text= ${more}> </p>
+
     <div class="row mt-4">
         <div class="col">
             <a href="/" class="mb-5 btn btn-primary btn-lg">Back</a>

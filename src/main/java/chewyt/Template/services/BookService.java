@@ -23,20 +23,18 @@ import jakarta.json.JsonReader;
 
 @Service
 public class BookService {
-    //API Service
+    // API Service
 
     Logger logger = Logger.getLogger(BookService.class.getName());
 
-    public List<Book> search(String variable) {
+    public List<Book> search(String query) {
 
         logger.info(">>>>>>>>>Linking external API");
 
         String url = UriComponentsBuilder
-                .fromUriString(URL_API)
-                .queryParam("nameStartsWith", variable.replace(" ", "+"))
-                .queryParam("ts", "1")  //optional
-                .queryParam("apikey", ENV_APIKEY_PRIVATE)  //check all query keys and value pairs
-                .queryParam("hash", ENV_APIKEY_PUBLIC)
+                .fromUriString(URL_API_SEARCH)
+                .queryParam("q", query.replace(" ", "+"))
+                .queryParam("limit", "20")
                 .toUriString();
 
         final RequestEntity<Void> req = RequestEntity.get(url).build();
@@ -50,7 +48,7 @@ public class BookService {
         try (InputStream is = new ByteArrayInputStream(resp.getBody().getBytes())) {
             JsonReader reader = Json.createReader(is);
             JsonObject result = reader.readObject();
-            final JsonArray results = result.getJsonObject("data").getJsonArray("results");
+            final JsonArray results = result.getJsonArray("docs");
             return results.stream()
                     .map(v -> (JsonObject) v)
                     .map(Book::create)
@@ -62,5 +60,5 @@ public class BookService {
 
         return null;
     }
-    
+
 }
