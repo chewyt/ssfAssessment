@@ -22,10 +22,10 @@ import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 
 @Service
-public class mainService {
+public class BookService {
     //API Service
 
-    Logger logger = Logger.getLogger(mainService.class.getName());
+    Logger logger = Logger.getLogger(BookService.class.getName());
 
     public List<ObjModel> getModelList(String variable) {
 

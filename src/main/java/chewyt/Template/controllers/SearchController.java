@@ -22,12 +22,12 @@ import chewyt.Template.services.*;
 
 @Controller
 @RequestMapping(path = "/search")
-public class mainController {
+public class SearchController {
 
-    private final Logger logger = Logger.getLogger(mainController.class.getName());
+    private final Logger logger = Logger.getLogger(SearchController.class.getName());
 
     @Autowired
-    mainService service;
+    BookService service;
 
     @Autowired
     cacheService cacheService;

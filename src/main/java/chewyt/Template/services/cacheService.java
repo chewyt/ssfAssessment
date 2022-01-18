@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import chewyt.Template.models.ObjModel;
-import chewyt.Template.repositories.standardRepo;
+import chewyt.Template.repositories.BookRepository;
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
@@ -24,7 +24,7 @@ import jakarta.json.JsonReader;
 public class cacheService {
     
     @Autowired
-    standardRepo repo;
+    BookRepository repo;
 
     private final Logger logger = Logger.getLogger(cacheService.class.getName());
 

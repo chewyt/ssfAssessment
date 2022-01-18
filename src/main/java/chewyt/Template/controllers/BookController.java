@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(path = "/")
-public class indexController {
+public class BookController {
     
     @GetMapping
     public String getHome(){

@@ -13,12 +13,12 @@ import static chewyt.Template.Constants.*;
 
 
 @Repository
-public class standardRepo {
+public class BookRepository {
     
     @Autowired
     RedisTemplate<String, String> template;
 
-    private final Logger logger = Logger.getLogger(standardRepo.class.getName());
+    private final Logger logger = Logger.getLogger(BookRepository.class.getName());
     
 
     //Saving as a JSON string

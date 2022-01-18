@@ -28,7 +28,7 @@ import jakarta.json.JsonObject;
 public class RestyController {
 
     @Autowired
-    mainService service;
+    BookService service;
 
     @Autowired
     cacheService cacheService;
