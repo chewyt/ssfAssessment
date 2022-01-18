@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Search</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto Condensed' rel='stylesheet'>
+    <style>
+        h1 {
+            font-family: 'Roboto Condensed';
+            font-size: 50px;
+            font-weight: bolder;
+            color: white;
+        }
+        </style>
+</head>
+
+<body class="results text-center">
+    <div class="row text-center">
+        <h1 class="row mb-5 mt-5 text-center">Hero search</h1>
+        <div class="images wrapper">
+            <div th:each="hero: ${heroes}">
+                <div class="text-center">
+                    <!-- <span><strong>Name: </strong></span> -->
+                    <img th:src="@{${hero.imgUrl}+'/portrait_incredible.jpg'}" alt="${hero.name}" height="100px">
+                    <p th:text=${hero.name}>hi</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col">
+            <a href="/" class="mb-5 btn btn-primary btn-lg">Back</a>
+        </div>
+    </div>
+</body>
+
+</html>
