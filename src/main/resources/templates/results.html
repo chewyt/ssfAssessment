@@ -28,7 +28,7 @@
             <div class="contain" th:each="search: ${searches}"> 
                 <div class="text-center">
                     <!-- <img th:src="@{${search.imgUrl}}" alt="${hero.name}" height="100px"> -->
-                    <a th:href="@{${search.key}}">
+                    <a th:href="@{'/book/'+${search.key}}">
                         <p th:text=${search.title}>hi</p>
                     </a>
                     

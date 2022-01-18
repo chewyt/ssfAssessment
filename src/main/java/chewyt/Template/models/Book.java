@@ -44,7 +44,7 @@ public class Book implements Serializable {
 
     public static Book create(JsonObject o) {
         Book om = new Book();
-        om.setKey(o.getString("key"));
+        om.setKey(o.getString("key").substring(7));//revised
         om.setTitle(o.getString("title"));
         return om;
     }

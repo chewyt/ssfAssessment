@@ -28,7 +28,7 @@ public class BookController {
     @Autowired
     cacheDetailSvc cacheDetailSvc;
 
-    @GetMapping(path="/works/{id}")
+    @GetMapping(path="/book/{id}")
     public String getBook(@PathVariable String id, Model model){
         
         Optional<BookDetails> opt = cacheDetailSvc.getObj(id);
