@@ -15,19 +15,19 @@
             font-family: 'Roboto Condensed';
             font-size: 50px;
             font-weight:bolder;
-            color: rgba(255, 255, 255,0.9);
-            text-shadow: 1px 1px 2px black, 0 0 1em red, 0 0 0.2em darkred;
+            color: black;
+            /* text-shadow: 1px 1px 2px black, 0 0 1em red, 0 0 0.2em darkred; */
         }
         </style>
 </head>
 <body class="text-center">
 
-    <a href="index.html"><img class="" src="icon.png" height="100px" alt="Icon"></a>
-    <h1 class="mb-3 mt-3">Standard search</h1>
+    <a href="index.html"><img class="mb-1" src="icon.png" height="50px" alt="Icon"></a>
+    <h1 class="mb-3 mt-5">Book search</h1>
     <div class="form-floating searchbar">
         <form action="/search" method="post">
             <input type="search" class=" form-control  mt-2" name="variable" id="floating-input"
-                placeholder="Heroes unite!">
+                placeholder="Search books by title">
            <p class="error" th:text= ${error}> </p>
             <button class="mt-4 mb-5 btn btn-primary w-25" type="submit">
                 Search

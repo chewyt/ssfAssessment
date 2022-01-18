@@ -11,15 +11,14 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    background: url(https://i.annihil.us/u/prod/marvel/i/mg/8/e0/52bdf830aa094.jpg) no-repeat center;
+    /* background: url(https://i.annihil.us/u/prod/marvel/i/mg/8/e0/52bdf830aa094.jpg) no-repeat center; */
     /* height: 750px; */
     
     padding-top: 40px;
     padding-bottom: 40px;
-    background-size: auto;
-    background-attachment: fixed;
-    background-color: rgba(0,0,0,0.85);
-  }
+    /* background-size: auto; */
+    /* background-attachment: fixed; */
+    background-color: white
 
   body.results{
     display: flex;
