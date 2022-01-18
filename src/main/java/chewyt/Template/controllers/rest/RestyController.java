@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 // import chewyt.Template.*;
-import chewyt.Template.models.ObjModel;
+import chewyt.Template.models.Book;
 import chewyt.Template.services.*;
 // import static chewyt.Template.Constants.*;
 
@@ -42,11 +42,11 @@ public class RestyController {
         logger.info("Variable: %s".formatted(variable));
 
         // >>>>>>>>>>>>Comment/ Uncomment either one
-        Optional<List<ObjModel>> opt = cacheService.getArray(variable);
+        Optional<List<Book>> opt = cacheService.getArray(variable);
         // Optional<ObjModel> optObj = cacheService.getObj(variable);
         // >>>>>>>>>>>>Comment/ Uncomment either one
 
-        List<ObjModel> modelList = Collections.emptyList();
+        List<Book> modelList = Collections.emptyList();
         
         if (opt.isPresent()) {
             logger.info("Cache hit for %s".formatted(variable));
@@ -56,7 +56,7 @@ public class RestyController {
             try {
                 logger.info(">>>>>>>>Try catch for using mainService");
                 
-                modelList=service.getModelList(variable);
+                modelList=service.search(variable);
                 logger.info("Is modelList List empty: %s".formatted(modelList.isEmpty()));
                 if (modelList.size()>0){
                     cacheService.save(variable, modelList);

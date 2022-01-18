@@ -8,7 +8,7 @@ import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 
-public class ObjModel implements Serializable {
+public class Book implements Serializable {
    
     private String name;
     private String imgUrl;
@@ -38,27 +38,27 @@ public class ObjModel implements Serializable {
                 .build();
     }
 
-    public static ObjModel create(JsonObject o) {
-        ObjModel om = new ObjModel();
+    public static Book create(JsonObject o) {
+        Book om = new Book();
         om.setName(o.getString("name"));
         om.setImgUrl(o.getJsonObject("thumbnail").getString("path"));
         return om;
     }
     
-    public static ObjModel createfromRedis(JsonObject o) {
-        ObjModel om = new ObjModel();
+    public static Book createfromRedis(JsonObject o) {
+        Book om = new Book();
         om.setName(o.getString("name"));
         om.setImgUrl(o.getString("imgUrl"));
         return om;
     }
 
-    public static ObjModel create(String jsonString) {
+    public static Book create(String jsonString) {
         try (InputStream is = new ByteArrayInputStream(jsonString.getBytes())) {
             final JsonReader reader = Json.createReader(is);
             return create(reader.readObject());
 
         } catch (Exception e) {
-            return new ObjModel();
+            return new Book();
         }
     }
 

@@ -27,7 +27,7 @@ public class BookService {
 
     Logger logger = Logger.getLogger(BookService.class.getName());
 
-    public List<ObjModel> getModelList(String variable) {
+    public List<Book> search(String variable) {
 
         logger.info(">>>>>>>>>Linking external API");
 
@@ -53,7 +53,7 @@ public class BookService {
             final JsonArray results = result.getJsonObject("data").getJsonArray("results");
             return results.stream()
                     .map(v -> (JsonObject) v)
-                    .map(ObjModel::create)
+                    .map(Book::create)
                     .collect(Collectors.toList());
 
         } catch (Exception e) {

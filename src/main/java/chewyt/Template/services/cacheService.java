@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import chewyt.Template.models.ObjModel;
+import chewyt.Template.models.Book;
 import chewyt.Template.repositories.BookRepository;
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
@@ -28,7 +28,7 @@ public class cacheService {
 
     private final Logger logger = Logger.getLogger(cacheService.class.getName());
 
-    public Optional<List<ObjModel>> getArray(String searchKey) {
+    public Optional<List<Book>> getArray(String searchKey) {
 
         Optional<String> opt  = repo.get(searchKey);
         if (opt.isEmpty()) {
@@ -38,15 +38,15 @@ public class cacheService {
         }
         else{
             JsonArray jsonarray  = parseJsonArray(opt.get());
-            List<ObjModel> thatList  = jsonarray.stream()
+            List<Book> thatList  = jsonarray.stream()
             .map(v->(JsonObject)v)     //cast as a stream of Json Objects
-            .map(ObjModel::createfromRedis) //cast as a stream of Weather objects
+            .map(Book::createfromRedis) //cast as a stream of Weather objects
             .collect(Collectors.toList()); //collect as a Collection List of Weather Objects
             return Optional.of(thatList);
         }
     }
     
-    public Optional<ObjModel> getObj(String searchKey) {
+    public Optional<Book> getObj(String searchKey) {
         Optional<String> opt  = repo.get(searchKey);
         if (opt.isEmpty()) {
             logger.info(">>>>>>>>>>> Running cacheService (JSONObjects)");
@@ -55,7 +55,7 @@ public class cacheService {
         }
         else{
             JsonObject jsonObject = parseJsonObject(opt.get());
-            return Optional.of(ObjModel.create(jsonObject));
+            return Optional.of(Book.create(jsonObject));
         }
     }
 
@@ -80,7 +80,7 @@ public class cacheService {
     }
 
     // List Model convert to Json array and stringify to Json string
-    public void save(String searchKey, List<ObjModel> listy) {
+    public void save(String searchKey, List<Book> listy) {
         JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
         listy.stream()
             .forEach(v->arrayBuilder.add(v.toJson()));
